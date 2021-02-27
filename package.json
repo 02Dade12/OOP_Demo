@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/02Dade12/OOP_Demo/issues"
   },
-  "homepage": "https://github.com/02Dade12/OOP_Demo#readme"
+  "homepage": "https://github.com/02Dade12/OOP_Demo#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0"
+  }
 }

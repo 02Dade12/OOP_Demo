@@ -12,7 +12,8 @@ function initApp() {
 }
 
 function addMember() {
-    inquirer.promopt([{
+    inquirer
+    .prompt([{
         type: 'input',
         name: 'name',
         message: 'Enter team members name',
@@ -28,7 +29,7 @@ function addMember() {
         message: 'What is their email?',
     },
     {
-        type: ' list',
+        type: 'list',
         name: 'role',
         message: 'Select team members role',
         choices: [
@@ -47,7 +48,8 @@ function addMember() {
             } else {
                 roleInfo = "office phone number";
             }
-            inquirer.prompt([{
+            inquirer
+            .prompt([{
                 message: `Enter team member's ${roleInfo}`,
                 name: "roleInfo"
             },
@@ -124,7 +126,7 @@ function addHtml(member) {
         let data = "";
         if (role === "Engineer") {
             const gitHub = member.getGithub();
-            data = `<div class="col-6">
+            data = `<div class="col-4">
             <div class="card mx-auto mb-3" style="width: 18rem">
             <h5 class="card-header">${name}<br /><br />Engineer</h5>
             <ul class="list-group list-group-flush">
@@ -133,10 +135,15 @@ function addHtml(member) {
                 <li class="list-group-item">GitHub: ${gitHub}</li>
             </ul>
             </div>
-        </div>`;
+        </div>
+        </div>
+    </div>
+</body>
+</html>`;
+        resolve(data);
         } else if (role === "Intern") {
             const school = member.getSchool();
-            data = `<div class="col-6">
+            data = `<div class="col-4">
             <div class="card mx-auto mb-3" style="width: 18rem">
             <h5 class="card-header">${name}<br /><br />Intern</h5>
             <ul class="list-group list-group-flush">
@@ -145,10 +152,15 @@ function addHtml(member) {
                 <li class="list-group-item">School: ${school}</li>
             </ul>
             </div>
-        </div>`;
+        </div>
+        </div>
+    </div>
+</body>
+</html>`;
+        resolve(data);
         } else {
             const officePhone = member.getOfficeNumber();
-            data = `<div class="col-6">
+            data = `<div class="col-4">
             <div class="card mx-auto mb-3" style="width: 18rem">
             <h5 class="card-header">${name}<br /><br />Manager</h5>
             <ul class="list-group list-group-flush">
@@ -157,7 +169,12 @@ function addHtml(member) {
                 <li class="list-group-item">Office Phone: ${officePhone}</li>
             </ul>
             </div>
-        </div>`
+        </div>
+        </div>
+    </div>
+</body>
+</html>`;
+        resolve(data);
         }
         console.log("adding team member");
         fs.appendFile("./output/index.html", data, function (err) {
@@ -172,7 +189,6 @@ function addHtml(member) {
 function finishHtml() {
     const html = ` </div>
     </div>
-    
 </body>
 </html>`;
 
@@ -184,10 +200,4 @@ function finishHtml() {
     console.log("end");
 }
 
-// addMember();
-// startHtml();
-// addHtml("hi")
-// .then(function() {
-// finishHtml();
-// });
 initApp();
